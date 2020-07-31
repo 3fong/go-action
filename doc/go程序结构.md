@@ -26,6 +26,29 @@ go的编程原则是简洁.
 9. 没有函数修饰
 10. 没有线程局部存储
 
+#### go安装目录结构 ####
+
+api:版本api差异    
+bin:编译器,文档工具,格式化工具    
+doc:英文版go文档    
+lib:引用的库文件    
+misc:辅助工具文件    
+pkg:window平台编译好的中间文件
+src:标准库源码    
+test:测试用例 
+
+go的环境变量区分安装目录GOROOT,开发目录GOPATH,开发目录用于放置开发项目源码  
+
+配置go下载代理:
+
+go env -w GO111MODULE=on
+go env -w GOPROXY=https://goproxy.cn,direct
+ 
+第一个环境变量是开启项目模块声明功能.需要在项目中定义go.mod文件,显示声明项目依赖库文件及版本
+
+vscode中安装code runner插件,获取一键式运行功能
+
+go环境环境变量配置:http://c.biancheng.net/view/88.html
 
 #### 程序结构 ####
 
