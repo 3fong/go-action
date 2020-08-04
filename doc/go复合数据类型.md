@@ -49,16 +49,6 @@ slice,map是动态数据结构,根据需要动态增长;
 
 *数据类型代表指针,&变量名代表传入变量的指针
 
-
-
-
-
-
-
-
-
-
-
 #### Slice ####
 
 Slice(切片):变长的序列.它的底层实现是数组         
@@ -109,10 +99,76 @@ slice的结构:
 
 组成结构参数:结构体指针,长度和容量,虽然底层数组的元素是间接访问的,但是slice的组成结构参数是直接访问的.
 
+#### Map ####
+
+hash表是一种巧妙且实用的数据结构.它是无序的key/value对的集合,其中key是不同的,通过key可以在常数时间复杂度内检索,更新或删除对应的value.
+
+格式:
+
+	map[K]V
+	ages := make(map[string]int)
+	ages["alice"]=31
+	ages["bob"]=60
+	===
+	ages := map[string]int{
+		"alice":31
+		"bob":60
+	}
+
+map标是类型;K为key;V为value;
+map中所有key的类型相同;所有value的类型相同;但是key和value可以是不同类型;key必须支持==比较;所以slice类型为key时必须进行类型转换.
+
+无法对map元素进行取址操作,因为map可能随着元素的数量增长而重新分配内存空间,造成原先的地址无效
+
+map迭代顺序不确定,遍历的顺序是随机的,每次遍历的顺序都不相同;
+
+	age, ok := ages["tom"]
+	if !ok { /* "tom" is not a key in this map; age == 0. */ }
+
+如果key不存在,map将返回零值,所以map取值可以通过第二次布尔参数判断是否值存在,不存在时返回false.
+
+go中没有set类型,可以使用map来实现set的功能.map[string]bool,key就是实际set要存在的值
+
+#### 结构体 ####
+
+结构体是一种聚合的数据类型,是由零个或多个任意类型的值聚合成的实体.每个值称为结构体的成员.
+
+	// 定义
+	type Employee struct {
+	    ID        int
+	    Name      string
+	    Address   string
+	    DoB       time.Time
+	    Position  string
+	    Salary    int
+	    ManagerID int
+	}
+	// 使用
+	var dilbert Employee
+	dilbert.Salary -= 5000
 
 
+EmployeeByID(id).Salary = 0
 
+这种写法,EmployeeByID(id)必须要返回实体的指针,因为调用函数返回的是值,而不是一个变量.
 
+如果EmployeeByID(id)不返回指针,则需要写成如下格式:
+
+	var aa = EmployeeByID(id)
+	aa.Salary = 0
+
+结构体中不能包含自己,但是可以包含自己的指针;
+
+	type tree struct {
+		value       int
+		left, right *tree
+	}
+
+空结构体:没有任何成员的结构体,写作struct{},大小是0.可以用于结构占位,如map模拟set数据就可以写成:
+
+	seen := make(map[string]struct{})
+
+但是struct的空间占用比较大,一般不这么写
 
 
 
