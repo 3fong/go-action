@@ -170,6 +170,87 @@ EmployeeByID(id).Salary = 0
 
 但是struct的空间占用比较大,一般不这么写
 
+结构体字面值
+
+	type Point struct{ X, Y int }
+
+方法一:
+
+	p := Point{1, 2}
+
+通过顺序来直接赋值,这种方式很容易出错,一般用于比较简单的结构
+
+方法二:
+
+	p := Point{x:1, y:2}
+
+通过参数名来赋值,更直观,突破顺序的束缚
+
+结构体可作为函数的参数和返回值;    
+如果要在函数内部修改结构体成员的话,必须传入结构体指针.因为go的所有函数参数都是值拷贝传入,函数参数将不再是函数调用时的原始变量;      
+结构体的全部成员都可以比较,那么结构体也可以比较.    
+
+匿名成员:声明一个成员对应的数据类型而不指明成员的名称.匿名成员的数据类型必须是命名的类型或指向一个命名的类型的指针.匿名成员并不要求是结构体类型,任何类型都可以是匿名成员.匿名成员不仅简化了调用格式,同时也可以使用匿名成员类型的方法,这是它的核心价值
+
+
+	type Circle struct {
+  	   Point
+ 	   Radius int
+	}
+
+	// 赋值.因为Point未命名,所以可以直接赋值,
+	var c Circle
+	c.X=1
+	c.Y=1
+	c.Radius=5
+
+但是它的结构体字面值还需要使用定义结构:
+
+	c = Circle{Point{1,2},5}
+
+因为匿名成员有一个隐式的名字,因此不能同时包含两个类型相同的匿名成员,这会导致名字冲突.
+
+#### JSON ####
+
+JSON(JavaScript Object Notation)JavaScript对象表示法:是一种用于发送和接收结构化信息的标准协议.特点:简洁,易读,流行
+
+go的编码和解码标准库:encoding/json,encoding/xml,encoding/asn1等
+
+基本JSON类型:数字(十进制或科学计数法),布尔值,字符串
+
+数据类型转换时,JSON只对导出的结构体进行编码,即大写字母开头的才会进行编码.
+
+go的JSON tag使用:
+
+	type Movie struct {
+ 	   Title  string
+  	   Color  bool `json:"color,omitempty"`
+ 	   Actors []string
+	}
+
+`json:"color,omitempty"`即是JSON的tag,它用于知名json格式时,如果为true则字段名为color,否则不显示该字段.
+
+json和slice转换类:
+
+data, err := json.Marshal(movies) // 编码:将slice转为json
+err := json.Unmarshal(data, &titles) // 解码:将json转为slice
+
+#### 文本和HTML模板 ####
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
