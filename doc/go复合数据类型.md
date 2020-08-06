@@ -170,6 +170,7 @@ EmployeeByID(id).Salary = 0
 
 但是struct的空间占用比较大,一般不这么写
 
+
 结构体字面值
 
 	type Point struct{ X, Y int }
@@ -237,22 +238,20 @@ err := json.Unmarshal(data, &titles) // 解码:将json转为slice
 
 #### 文本和HTML模板 ####
 
+text/template和html/template等模板包提供了将数据和模板分开管理,增强了数据展示的灵活性和安全性.
 
+模板可以是一个字符串或文件,里面包含了一个或多个双花括号的对象{{action}}.action部分用于动态展示数据,每个action都包含了一个用模板语言书写的表达式,模板语言包含通过选择结构体的成员,调用函数或方法,表达式控制流if-else语句和range循环语句,还有其他实例化模板等诸多特性.
 
+模板字符串:
 
+	const templ = `{{.TotalCount}} issues:
+	{{range .Items}}----------------------------------------
+	Number: {{.Number}}
+	User:   {{.User.Login}}
+	Title:  {{.Title | printf "%.64s"}}
+	Age:    {{.CreatedAt | daysAgo}} days
+	{{end}}`
 
+每个action都有一个当前值的概念,用"."表示.{{range .Items}}和{{end}}对应一个循环action;"|"操作符类似于UNIX的管道,它将前一个表达式的结果作为后一个函数的输入.daysAgo是一个函数.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+template.Must辅助函数可以简化这个致命错误的处理：它接受一个模板和一个error类型的参数，检测error是否为nil（如果不是nil则发出panic异常），然后返回传入的模板
