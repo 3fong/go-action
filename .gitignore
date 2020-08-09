@@ -1,0 +1,16 @@
+.*.swp
+a.out
+*.orig
+build_src
+.flymake*
+.idea
+.DS_Store
+.gopath/
+.dotcloud
+*.test
+bundles/
+.hg/
+.git/
+vendor/pkg/
+pyenv
+.exe
