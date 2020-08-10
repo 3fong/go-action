@@ -10,15 +10,6 @@ import (
 	"os"
 )
 
-func main() {
-	// var a int32 = 1;
-	// var b int16 = 2;
-	// var c int = a + b;
-	// fmt.Println(c)
-	iotaTest()
-
-}
-
 func floatImageTest() {
 	const (
 		xmin, ymin, xmax, ymax = -2, -2, +2, +2
@@ -91,28 +82,27 @@ func stringTest() {
 }
 
 func comma(s string) string {
-    n := len(s)
-    if n <= 3 {
-        return s
-    }
-    return comma(s[:n-3]) + "," + s[n-3:]
+	n := len(s)
+	if n <= 3 {
+		return s
+	}
+	return comma(s[:n-3]) + "," + s[n-3:]
 }
-
 
 // Flags Flags
 type Flags uint
 
 const (
 	// FlagUp is up
-	FlagUp Flags = 1 << iota 
+	FlagUp Flags = 1 << iota
 	// FlagBroadcast supports broadcast access capability
-	FlagBroadcast     
-	// FlagLoopback is a loopback interface       
-	FlagLoopback    
-	// FlagPointToPoint belongs to a point-to-point link         
-	FlagPointToPoint  
-	// FlagMulticast supports multicast access capability       
-    FlagMulticast            
+	FlagBroadcast
+	// FlagLoopback is a loopback interface
+	FlagLoopback
+	// FlagPointToPoint belongs to a point-to-point link
+	FlagPointToPoint
+	// FlagMulticast supports multicast access capability
+	FlagMulticast
 )
 
 func iotaTest() {
@@ -121,5 +111,5 @@ func iotaTest() {
 	fmt.Println(FlagLoopback)
 	fmt.Println(FlagPointToPoint)
 	fmt.Println(FlagMulticast)
-	fmt.Println(FlagMulticast |  FlagUp )
+	fmt.Println(FlagMulticast | FlagUp)
 }

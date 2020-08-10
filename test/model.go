@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-
 )
 
 type user interface {
@@ -49,7 +48,7 @@ func (r role) Value() (u user) {
 	}
 	return u
 }
-func main() {
+func model() {
 	var id int = 2
 	r := role(id)
 	if r.Value() != nil {
