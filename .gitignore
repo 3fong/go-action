@@ -13,4 +13,4 @@ bundles/
 .git/
 vendor/pkg/
 pyenv
-.exe
+.exe/
