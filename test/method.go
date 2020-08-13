@@ -18,8 +18,9 @@ func (p Point) Distance(q Point) float64 {
     return math.Hypot(q.X-p.X, q.Y-p.Y)
 }
 
+// I 基础类型
 type I int
-
+// Sum 求和
 func (i I) Sum(q I) int {
     return int(i) + int(q)
 }
