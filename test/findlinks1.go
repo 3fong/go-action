@@ -11,10 +11,16 @@ import (
 	"golang.org/x/net/html"
 )
 
-func main() {
-	panic(fmt.Sprintf("invalid suit %q", "aa"))
+var text string = `0.0.0.0   account.jetbrains.com
+0.0.0.0	www.jetbrains.com
+59.110.226.9 www.liu.com
+5.110.226.9		www.niu.com
+::1        localhost`
 
-}
+// func main() {
+// 	regexp.Compile()
+
+// }
 
 func runFindlinks() {
 	for _, url := range os.Args[1:] {

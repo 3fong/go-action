@@ -12,10 +12,10 @@ import (
 	"golang.org/x/net/html"
 )
 
-func main() {
+// func main() {
 
-	bigSlowOperation()
-}
+// 	bigSlowOperation()
+// }
 
 func cyclePage(link func(url string) error) {
 	for _, url := range os.Args[1:] {

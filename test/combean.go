@@ -39,11 +39,3 @@ func reverse2(s []int) {
 		s[i], s[j] = s[j], s[i]
 	}
 }
-
-// Point 定义结构体
-type Point struct{ X, Y int }
-
-func structTest() *Point {
-	p := Point{1, 2}
-	return &p
-}
