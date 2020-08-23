@@ -7,7 +7,7 @@ import (
 
 
 type user interface {
-	Login() string
+	login() string
 	Read(p []byte) (n int, err error)
 	Write(p []byte) (n int, err error)
 }
@@ -17,7 +17,11 @@ type file struct {
 	date time.Time
 }
 
-func (f file) Login() string {
+func (f file) login() string {
+	return "len(p)"
+}
+
+func (f *file) login2() string {
 	return "len(p)"
 }
 func (f file) Read(p []byte) (n int, err error) {
@@ -28,15 +32,25 @@ func (f file) Write(p []byte) (n int, err error) {
 	fmt.Println(p,f.name,f.date)
 	return len(p),nil
 }
-func measure(u user){
-	var p = []byte{2,3}
-	fmt.Println(u.Read(p))
-}
 
 func main(){
 	f := file{name:"liu",date:time.Now()}
-	var p = []byte{1,1}
-	f.Read(p)
+	fmt.Println(f.login2)
+	// var p = []byte{1,1}
+	// f.Read(p)
 	
-	measure(f)
+	var db interface{}
+	fmt.Println(db)
+}
+
+type IntSet struct { X string }
+func (i *IntSet) String() string {
+	return i.X
+}
+
+
+type db interface {}
+
+func (d db) aa() string {
+	return "aa"
 }
