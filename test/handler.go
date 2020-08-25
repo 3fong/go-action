@@ -4,10 +4,18 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"syscall"
 )
 
 func main() {
-	// db := database{"shoes": 50, "socks": 5}
+    fmt.Errorf("%T","1");
+    var err error = syscall.Errno(2)
+    fmt.Println(err.Error()) // "no such file or directory"
+    fmt.Println(err)  
+}
+
+func serve(){
+    	// db := database{"shoes": 50, "socks": 5}
 	// log.Fatal(http.ListenAndServe("localhost:8000", db))
 
 	db := database{"shoes": 50, "socks": 5}
