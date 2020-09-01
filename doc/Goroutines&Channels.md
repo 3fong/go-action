@@ -21,11 +21,17 @@ goroutine退出方式:
 2. 直接终止程序
 3. goroutine请求触发其他goroutine自动结束执行
 
-goroutine使用需要考虑调用时是否安全.
+goroutine使用需要考虑调用时是否安全.goroutine是协程,它比线程更小,十几个goroutine可能底层只有五六个线程,内存消耗也更小,单个goroutine大概占用4-5kb栈内存.它比线程更易用,更高效,更轻便;
+
+runtime包
+
+Gosched 礼让协程
+Goexit 协程结束执行
+GOMAXPROCS 设置并行计算cpu核数最大值
 
 ### Channels ###
 
-
+协程通讯通道
 
 
 
