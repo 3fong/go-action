@@ -61,21 +61,53 @@ happens before:接收者收到数据发生在再次唤醒发送者goroutine之�
 并发:x事件不发生在y事件之前或之后;这里只是无法区分x,y发生的事件先后,而不是一定同时发生;    
 消息事件:强调通讯发生的时刻(事实),而不是消息具体值的情形;很多时候消息事件不没有具体值;
 
+#### pipeline(串联的channels) ####
 
+pipeline:是将多个channel连接在一起.由于是同步channel,channel越多越可能因为阻塞造成死循环;如果channel数据发送完毕可以通过close关闭,避免阻塞发生;但是关闭会造成发送panic,接收无限获取nil值;实际不需要关闭每一个channel,当channel没有被引用时,go会进行垃圾自动回收;
 
+	go func() {
+        for x := range naturals {
+            squares <- x * x
+        }
+        close(squares)
+    }()
 
+实际只需要在业务执行完再进行关闭即可
 
+#### 单方向的channel ####
 
+单方向的channel:语法上限制channel只能用于发送或接收.通过这种限制方式,来避免使用混乱问题,也可以避免位置的panic;    
 
+	发送: chan <- int 表示只发送int的channel    
+	接收: <- chan int 表示只能接收int的channel    
 
+因为关闭操作只用于断言不再向channel发送新数据,所以只有发送方的goroutine才会调用close函数;    
+可以将channel转换为单方向channel,但是不能将单方向channel转成正常的channel,这种转换是单向的;    
 
+#### 带缓存的channels ####
 
+带缓存的Channel内部持有一个元素队列.
 
+	ch = make(chan string, 3)
 
+向缓存channel发送操作就是向内部缓存队列的尾部插入元素,接收操作时从队列的头部删除元素;如果队列是满的,则阻塞发送;如果队列是空的,则阻塞接收;    
 
+查询channel容量
 
+	cap(ch)
 
+查询数量
 
+	len(ch)
+
+channel和goroutine的调度器机制紧密相连,如果没有其他goroutine从channel发送或接收,将会有永远阻塞的风险(deadlock)
+
+注意事项:
+
+1. 无缓存的channel,存在无接收方引起的goroutines泄漏问题;因为发送一直被占用;
+2. 无缓存channel用于保证每个发送操作与相应的同步接收操作;带缓存channel用于解耦通信操作;
+3. 带缓存channel的容量规划也很关键,因为容量大的话,会造成发送缓存(接收闲置,资源利用不佳);容量小时,又会造成程序死锁(发送堆积);
+4. 带缓存channel可能影响程序性能;发送和接收的效率不一致,会造成程序闲置,性能不佳;
 
 
 
