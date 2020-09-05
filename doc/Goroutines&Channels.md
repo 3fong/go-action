@@ -1,6 +1,8 @@
 ### Goroutines ###
 
-goroutine:是go的并发执行单元.简单上可以理解为其他语言的线程.当程序启动时,主函数运行在一个单独的goroutine中,我们叫它main goroutine;新的goroutine会用go语句来创建;语法:go关键字+函数或方法;go语句会使用其语句中的函数在新创建的goroutine中运行.
+goroutine(协程):是go的并发执行单元.简单上可以理解为其他语言的线程.协程相对独立,有自己的上下文,切换由自己控制(线程是由系统控制);当程序启动时,主函数运行在一个单独的goroutine中,我们叫它main goroutine;新的goroutine会用go语句来创建;语法:go关键字+函数或方法;go语句会使用其语句中的函数在新创建的goroutine中运行.
+
+go中所有系统调用操作都会出让cpu给其他goroutine,这使得goroutine切换不依赖系统线程和进程,也不依赖cpu的核数
 
 	f()    // call f(); wait for it to return
 	go f() // create a new goroutine that calls f(); don't wait
