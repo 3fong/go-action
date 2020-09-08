@@ -156,15 +156,38 @@ channel和goroutine的调度器机制紧密相连,如果没有其他goroutine从
 default中设置其他操作都能处理的逻辑;     
 nil的channel表示永远阻塞;select语句中操作nil的channel永远都不会被执行到;可以通过nil来激活或禁用case,实现额外事件超时和取消的逻辑;
 
+#### goroutine退出 ####
 
+程序中我们需要当业务执行异常或某些原因中途退出goroutine执行,这就需要goroutine可以退出.但是go并没有提供一个goroutine中终止另一个goroutine的方法,因为这会造成goroutine间的共享变量状态不可控;     
 
+退出方式有如下几种:
 
+	1 向abort的channel中发送和goroutine同样数量的退出消息;这种做法很理想,因为消息发送接收都可能阻塞,同时goroutine的实际数量也无法准确统计;    
+	2 广播机制;消费掉所有channel发送值并关闭channel;这样操作channel之后的代码会立即被执行;
 
+基于信号管理:
 
+	适合协程具备层级关系的情形;主协程下有子协程,主协程发送信息,触发子协程的关闭;
 
+问题:
 
+	接收者和发送者,缺少并行机制,消息订阅模式;
 
+builtin包的close方法
 
+	go func() {
+		os.Stdin.Read(make([]byte, 1)) // read a single byte
+		close(done)
+	}()
+
+创建一个goroutine,用于执行匿名函数,输入任意字符触发close方法,close可以接收一个发送者通道,用于关闭通道并进行关闭广播;它会向所有接收者发送消息,用于触发接收者后面的代码;    
+
+当主协程返回时,一个程序会退出,这样你无法在主函数退出后确认是否所有资源都进行了释放;这里可以使用panic让runtime把每个goroutine的栈dump下来,如果主协程时唯一剩下的goroutine,证明资源释放成功,否则就想办法进行资源释放;
+
+核心问题:调用链关系.     
+资源请求和管理有层级关系;
+
+全局机制:上下文共享数据结构,只读,规避风险;具备通过具体点进行上下的层管理.
 
 
 
