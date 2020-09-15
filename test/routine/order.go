@@ -1,6 +1,7 @@
 package main
 
 import (
+	"concurrent"
 	"fmt"
 	"runtime"
 )
@@ -12,6 +13,7 @@ func main() {
 	go b(v)
 	runtime.Gosched()
 	fmt.Println("c"+v)
+	concurrent.Multipy()
 }
 
 func a(v string) {

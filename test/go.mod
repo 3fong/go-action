@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/gopherjs/gopherjs v0.0.0-20200217142428-fce0ec30dd00 // indirect
+	github.com/satori/go.uuid v1.2.0
 	github.com/tdewolff/minify v2.3.6+incompatible // indirect
 	github.com/tdewolff/parse v2.3.4+incompatible // indirect
 	go.isomorphicgo.org/go/isokit v0.0.0-20181019201904-781d8122d6e8 // indirect
