@@ -1,9 +1,10 @@
 package main
 
 import (
-	"concurrent"
 	"fmt"
 	"runtime"
+
+	"github.com/go-action/test/routine/change"
 )
 
 
@@ -13,7 +14,7 @@ func main() {
 	go b(v)
 	runtime.Gosched()
 	fmt.Println("c"+v)
-	concurrent.Multipy()
+	change.Multipy()
 }
 
 func a(v string) {
