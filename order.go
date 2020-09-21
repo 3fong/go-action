@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"runtime"
+
+	"github.com/go-action/test/routine/change"
 )
 
 
@@ -12,6 +14,7 @@ func main() {
 	go b(v)
 	runtime.Gosched()
 	fmt.Println("c"+v)
+	change.Multipy()
 }
 
 func a(v string) {
