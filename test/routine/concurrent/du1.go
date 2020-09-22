@@ -1,4 +1,4 @@
-package main
+package concurrent
 
 import (
 	"flag"
@@ -11,7 +11,7 @@ import (
 
 var verbose = flag.Bool("v", false, "show verbose progress messages")
 
-func main() {
+func Du1() {
 	// Determine the initial directories.
 	flag.Parse()
 	roots := flag.Args()

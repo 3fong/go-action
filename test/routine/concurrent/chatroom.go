@@ -1,4 +1,4 @@
-package main
+package concurrent
 
 import (
 	"bufio"
@@ -7,7 +7,7 @@ import (
 	"net"
 )
 
-func main() {
+func Listner() {
 	listener, err := net.Listen("tcp", "localhost:8000")
 	if err != nil {
 		log.Fatal(err)

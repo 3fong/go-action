@@ -4,7 +4,7 @@
 // See page 250.
 
 // The du3 command computes the disk usage of the files in a directory.
-package main
+package concurrent
 
 // The du3 variant traverses all directories in parallel.
 // It uses a concurrency-limiting counting semaphore
@@ -23,7 +23,7 @@ import (
 var vFlag = flag.Bool("v", false, "show verbose progress messages")
 
 //!+
-func main() {
+func Du2() {
 	// ...determine roots...
 
 	//!-

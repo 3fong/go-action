@@ -1,4 +1,4 @@
-package main
+package concurrent
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func main() {
+func Countdown3() {
 	// ...create abort channel...
 	abort := make(chan struct{})
 	go func() {

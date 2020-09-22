@@ -36,20 +36,6 @@ func (f file) Write(p []byte) (n int, err error) {
 	return len(p), nil
 }
 
-func main() {
-	// f := file{name:"liu",date:time.Now()}
-	// fmt.Println(f.login2)
-	// var p = []byte{1,1}
-	// f.Read(p)
-	// compare()
-	// plot();
-	// typeJudge()
-	var arr = []string{"a","b","c","d"}
-	fmt.Println(arr[1:])
-
-	forValue()
-}
-
 type IntSet struct{ X string }
 
 func (i *IntSet) String() string {

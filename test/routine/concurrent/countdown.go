@@ -1,10 +1,10 @@
-package main
+package maconcurrentin
 
 import (
 	"fmt"
 )
 
-func main() {
+func CountDown() {
 	// fmt.Println("Commencing countdown.")
 	// tick := time.Tick(1 * time.Second)
 	// for countdown := 10; countdown > 0; countdown-- {

@@ -1,4 +1,4 @@
-package main
+package concurrent
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func main() {
+func Countdown2() {
 	// ...create abort channel...
 
 	//!-

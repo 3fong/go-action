@@ -4,7 +4,7 @@
 // See page 251.
 
 // The du4 command computes the disk usage of the files in a directory.
-package main
+package concurrent
 
 // The du4 variant includes cancellation:
 // it terminates quickly when the user hits return.
@@ -31,7 +31,7 @@ func cancelled() bool {
 
 //!-1
 
-func main() {
+func Du3() {
 	// Determine the initial directories.
 	roots := os.Args[1:]
 	if len(roots) == 0 {

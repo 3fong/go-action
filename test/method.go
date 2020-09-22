@@ -24,12 +24,6 @@ func (i I) Sum(q I) int {
 	return int(i) + int(q)
 }
 
-func main() {
-	// printDistance()
-	// print()
-	bindValue()
-}
-
 func printDistance() {
 	p := Point{1, 2}
 	q := Point{4, 6}

@@ -7,8 +7,16 @@ import (
 	"github.com/go-action/test/routine/change"
 )
 
-
 func main() {
+	n := runtime.GOMAXPROCS(16)
+	fmt.Println(n)
+	for {
+		go fmt.Print(0)
+		fmt.Print(1)
+	}
+}
+
+func printData(){
 	var v string = "5"
 	go a(v)
 	go b(v)
