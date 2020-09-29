@@ -1,4 +1,4 @@
-package main
+package test
 
 import (
 	"bytes"
@@ -69,36 +69,35 @@ func compare() {
 	fmt.Println(x == x)
 }
 
-func typeJudge(){
+func typeJudge() {
 	var w io.Writer
-w = os.Stdout
-f := w.(*os.File)      // success: f == os.Stdout
-// c := w.(*bytes.Buffer) // panic: interface holds *os.File, not *bytes.Buffer
+	w = os.Stdout
+	f := w.(*os.File) // success: f == os.Stdout
+	// c := w.(*bytes.Buffer) // panic: interface holds *os.File, not *bytes.Buffer
 
-fmt.Println(f)
-// fmt.Println(c)
+	fmt.Println(f)
+	// fmt.Println(c)
 
 	var w2 io.Writer
-w2 = os.Stdout
-rw := w2.(io.ReadWriter) // success: *os.File has both Read and Write
+	w2 = os.Stdout
+	rw := w2.(io.ReadWriter) // success: *os.File has both Read and Write
 
-w2 = new(ByteCounter)
-rw = w2.(io.ReadWriter) // panic: *ByteCounter has no Read method
-fmt.Println(rw)
+	w2 = new(ByteCounter)
+	rw = w2.(io.ReadWriter) // panic: *ByteCounter has no Read method
+	fmt.Println(rw)
 }
 
-type ByteCounter struct  {
-	
+type ByteCounter struct {
 }
 
 func (b ByteCounter) Write(p []byte) (n int, err error) {
-	return 1,nil
+	return 1, nil
 }
 
-func forValue(){
-	x := []string{"html","body","div","div","h2","p"} 
-	y := []string{"div","div","h2"} 
-	fmt.Println(containsAll(x,y))
+func forValue() {
+	x := []string{"html", "body", "div", "div", "h2", "p"}
+	y := []string{"div", "div", "h2"}
+	fmt.Println(containsAll(x, y))
 }
 
 func containsAll(x, y []string) bool {

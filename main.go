@@ -16,12 +16,12 @@ func main() {
 	}
 }
 
-func printData(){
+func PrintData() {
 	var v string = "5"
 	go a(v)
 	go b(v)
 	runtime.Gosched()
-	fmt.Println("c"+v)
+	fmt.Println("c" + v)
 	change.Multipy()
 }
 

@@ -1,11 +1,11 @@
-package main
+package test
 
 import (
 	"fmt"
 	"log"
 )
 
-type user interface {
+type userA interface {
 	login() string
 }
 
@@ -32,7 +32,7 @@ func (tenant tenantuser) login() string {
 
 type role int
 
-func (r role) Value() (u user) {
+func (r role) Value() (u userA) {
 	switch r {
 	case 1:
 		u = sysuser{

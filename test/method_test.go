@@ -1,4 +1,4 @@
-package main
+package test
 
 import (
 	"fmt"
@@ -8,7 +8,14 @@ import (
 	"math"
 	"math/cmplx"
 	"os"
+	"testing"
 )
+
+func TestSum(t *testing.T) {
+	var i I
+	i = 5
+	fmt.Println(i.Sum(7))
+}
 
 func floatImageTest() {
 	const (
