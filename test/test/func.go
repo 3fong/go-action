@@ -160,7 +160,7 @@ func errorf(linenum int, format string, args ...interface{}) {
 	fmt.Fprintln(os.Stderr)
 }
 
-func PrintFile() {
+func printFile() {
 	for _, url := range os.Args[1:] {
 		var b, err = ReadFile(url)
 		if err != nil {
@@ -192,13 +192,4 @@ func trace(msg string) func() {
 	return func() {
 		log.Printf("exit %s (%s)", msg, time.Since(start))
 	}
-}
-
-func IsPalindrome(s string) bool {
-    for i := range s {
-        if s[i] != s[len(s)-1-i] {
-            return false
-        }
-    }
-    return true
 }

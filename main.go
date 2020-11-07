@@ -6,14 +6,12 @@ import (
 
 	"github.com/go-action/test/routine/change"
 )
+var usage = make(map[string]int64)
 
 func main() {
-	n := runtime.GOMAXPROCS(16)
-	fmt.Println(n)
-	for {
-		go fmt.Print(0)
-		fmt.Print(1)
-	}
+	const user = "joe@example.org"
+	usage[user] = 980000000
+	fmt.Print(CheckQuota(user))
 }
 
 func PrintData() {

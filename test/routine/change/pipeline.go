@@ -1,6 +1,10 @@
 package change
 
-import "fmt"
+import (
+	"fmt"
+	"unicode"
+)
+
 
 func Multipy() {
 	naturals := make(chan int)
@@ -26,4 +30,21 @@ func Multipy() {
 	for x := range squares {
 		fmt.Println(x)
 	}
+}
+
+// IsPalindrome 回文判断 
+func IsPalindrome(s string) bool {
+	var letters []rune
+    for _, r := range s {
+        if unicode.IsLetter(r) {
+            letters = append(letters, unicode.ToLower(r))
+        }
+    }
+    for i := range letters {
+        if letters[i] != letters[len(letters)-1-i] {
+            return false
+        }
+	}
+	fmt.Printf("IsPalindrome: %c", letters)
+    return true
 }
