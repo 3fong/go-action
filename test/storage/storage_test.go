@@ -1,6 +1,7 @@
 package storage
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 )
@@ -10,7 +11,6 @@ func TestCheckQuotaNotifiesUser(t *testing.T) {
 	notifyUser = func(user, msg string) {
 		notifiedUser, notifiedMsg = user, msg
 	}
-	t.Logf("notifyUser : %s",notifyUser)
 	const user = "liu"
 	usage[user] = 990000000 // simulate a 980MB-used condition
 
@@ -27,4 +27,26 @@ func TestCheckQuotaNotifiesUser(t *testing.T) {
 		t.Errorf("unexpected notification message <<%s>>, "+
 			"want substring %q", notifiedMsg, wantSubstring)
 	}
+}
+
+// A poor assertion function.
+func assertEqual(x, y int) {
+	if x != y {
+		panic(fmt.Sprintf("%d != %d", x, y))
+	}
+}
+func TestSplit(t *testing.T) {
+	words := strings.Split("a:b:c", ":")
+	assertEqual(len(words), 3)
+	// ...
+}
+
+func TestSplit2(t *testing.T) {
+	s, sep := "a:b:c:D", ":"
+	words := strings.Split(s, sep)
+	if got, want := len(words), 3; got != want {
+		t.Errorf("Split(%q, %q) returned %d words, want %d",
+			s, sep, got, want)
+	}
+	// ...
 }
