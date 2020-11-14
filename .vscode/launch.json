@@ -9,7 +9,7 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}/test/interface.go",
+            "program": "${workspaceFolder}/practice/interface.go",
             "env": {},
             "args": []
         }

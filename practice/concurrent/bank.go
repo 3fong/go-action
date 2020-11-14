@@ -1,4 +1,4 @@
-package bank
+package concurrent
 
 var (
 	sema    = make(chan struct{}, 1) // a binary semaphore guarding balance

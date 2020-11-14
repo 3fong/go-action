@@ -1,4 +1,4 @@
-package test
+package practice
 
 import (
 	"fmt"
@@ -24,9 +24,9 @@ var text string = `0.0.0.0   account.jetbrains.com
 
 func runFindlinks() {
 	for _, url := range os.Args[1:] {
-		links, err := findlinks(url)
+		links, err := Findlinks(url)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "findlinks: %v\n", err)
+			fmt.Fprintf(os.Stderr, "Findlinks: %v\n", err)
 			continue
 		}
 		for _, link := range links {
@@ -35,7 +35,7 @@ func runFindlinks() {
 	}
 }
 
-func findlinks(url string) ([]string, error) {
+func Findlinks(url string) ([]string, error) {
 	resp, err := http.Get(url)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
@@ -65,7 +65,7 @@ func visit(links []string, n *html.Node) []string {
 	return links
 }
 
-func fetch() {
+func Fetch() {
 	for _, url := range os.Args[1:] {
 		resp, err := http.Get(url)
 		if err != nil {
