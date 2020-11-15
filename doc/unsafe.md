@@ -39,7 +39,9 @@ pb := (*int16)(unsafe.Pointer(uintptr(unsafe.Pointer(&x)) + unsafe.Offsetof(x.b)
 
 
 
+reflect.DeepEqual(got, want):用于判断任意类型值是否想等.原理是基础类型==判断是否相等,复合类型遍历后判断==是否相等.但是nil和空类型不相等.
 
+unsafe包虽然可以获取更好的性能,但是他会牺牲可移植性和安全性.这往往是得不偿失的行为.
 
 
 

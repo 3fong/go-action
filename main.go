@@ -2,17 +2,36 @@ package main
 
 import (
 	"fmt"
+	"go-action/practice/login"
 	"go-action/practice/myreflect"
 	"go-action/practice/myreflect/parse"
 	"go-action/practice/routine/change"
+	"log"
 	"runtime"
 	"time"
 	"unsafe"
 )
 
 func main() {
+	fmt.Println("demoapp")
+	fmt.Println("aaaadfd")
+	fmt.Printf("aaa")
+	parse.Practice()
+	result := parse.DemoParse("demoapp")
+	result2 := parse.DemoParse("demoapp")
+	log.Println(result2)
+	u := login.User{
+		Name:     "dalong",
+		Password: "femo",
+	}
+	token := u.Userlogin()
+	log.Println(token)
+	err := u.UserLogout(token)
+	if err != nil {
+		log.Println("please provide token")
+	}
+	log.Println(result)
 
-	point()
 }
 
 func Myreflect() {

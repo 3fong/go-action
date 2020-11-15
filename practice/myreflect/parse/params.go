@@ -93,3 +93,15 @@ func Print(x interface{}) {
 			strings.TrimPrefix(methType.String(), "func"))
 	}
 }
+
+func Split(){
+	got := strings.Split("a:b:c", ":")
+    want := []string{"a", "b", "c"};
+	fmt.Printf("%t",reflect.DeepEqual(got, want))
+	
+	var a, b []string = nil, []string{}
+fmt.Println(reflect.DeepEqual(a, b)) // "false"
+
+var c, d map[string]int = nil, make(map[string]int)
+fmt.Println(reflect.DeepEqual(c, d)) // "false"
+}
