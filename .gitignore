@@ -14,3 +14,4 @@ bundles/
 vendor/pkg/
 pyenv
 *.exe
+.vscode/
